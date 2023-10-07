@@ -68,6 +68,9 @@ function game() {
         while(randomChoice < 0 || randomChoice == 3 || (randomChoiceHis.includes(randomChoice) && randomChoiceHis.length < 4)){
             randomChoice = (Math.floor(Math.random() * 4) - 1);
         }
+        //figure out way to not allow player and computer to input already selected numbers
+        //make stalemate detector
+        //make bot able to make player lose if close to winning (probably only when player is 1 choice away from win)
         randomChoiceHis.push(randomChoice);
         console.log(arrayChoice[randomChoice]);
         console.log(`player: ${playerSelection}`);
