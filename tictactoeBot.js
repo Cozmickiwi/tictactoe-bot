@@ -44,5 +44,43 @@ function scenarioCalc() {
     winningScenarios['outcome7'] = [1, 5, 9];
     winningScenarios['outcome8'] = [3, 5, 7];
 }
+
+//randomly select one of the outcomes in the winningScenarios object
+//use rng to randomly select outcome item (1-3) and output to console
+//make a game function, which (at this point) prompts player for a number from 1 to 9
+//if player choice is contained in selected outcome array, change to new array
+//dont focus on making player lose yet, just focus on making the computer win
+function game() {
+    let randomSelect = 0;
+    while(randomSelect == 0  || randomSelect == 9){
+        randomSelect = Math.floor(Math.random() * 9);
+    }
+    let outcomeSelect = (`outcome${randomSelect}`);
+    let arrayChoice = winningScenarios[outcomeSelect];
+    console.log(arrayChoice);
+    let randomChoice = -1;
+    let randomChoiceHis = [];
+    for(i = 0; i < 3; i++){
+        let playerSelection = prompt('choose number between 1 and 9');
+        if(arrayChoice.includes(Number(playerSelection))){
+            return('');
+        }
+        while(randomChoice < 0 || randomChoice == 3 || (randomChoiceHis.includes(randomChoice) && randomChoiceHis.length < 4)){
+            randomChoice = (Math.floor(Math.random() * 4) - 1);
+        }
+        randomChoiceHis.push(randomChoice);
+        console.log(arrayChoice[randomChoice]);
+        console.log(`player: ${playerSelection}`);
+        console.log(randomChoiceHis);
+        if(randomChoiceHis.length == 3) {
+            gameEnd = true;
+            return('end');
+        }
+}
+}
+gameEnd = false;
 scenarioCalc();
 console.log(winningScenarios);
+while(gameEnd == false){
+    game();
+}
